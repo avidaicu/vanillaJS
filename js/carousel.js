@@ -39,4 +39,7 @@ $(document).ready(function(){
 	// that call the `scrollLeft(..)` and `scrollRight(..)` functions,
 	// respectively
 
+	$left.on("click", scrollLeft);
+	$right.on("click", scrollRight);
+
 });

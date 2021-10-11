@@ -12,4 +12,20 @@ $(document).ready(function(){
 	// handler the `$content` element rather than individual
 	// event handlers to each item in the carousel.
 
+	$items.on("click", "[rel*='js-item-']", function(evt){
+		var ID = $(evt.target).attr("rel").replace(/^.*(\d+)$/, "$1");
+		// debugger;
+
+        evt.preventDefault();
+        // evt.stopPropagation();
+        // evt.stopImmediatePropagation();
+
+        // var url = $(evt.target).attr("href");
+
+        $.ajax("/details/" + ID + ".html", { dataType: "text" })
+		.then(function(contents){
+            $content.html(contents);
+        });
+    });
+
 });
