@@ -46,7 +46,8 @@ var Carousel = (function() {
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
 
-			Details.loadPerson(ID);
+			EVT.emit("person-selected", ID);
+			// Details.loadPerson(ID);
 		});
 	}
 
@@ -59,9 +60,10 @@ var Carousel = (function() {
 	var position;
 	var maxPosition;
 
-	// declare a `public api`
-	return {
-		init: init
-	};
+	EVT.on("init", init);
+
+	// return {
+	// 	init: init
+	// };
 
 })();

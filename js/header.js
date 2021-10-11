@@ -19,9 +19,10 @@ var Header = (function() {
 
     var $modal;
 
-    // declare a `public api`
-    return {
-        init: init
-    };
+    EVT.on("init", init);
+
+    // return {
+    //     init: init
+    // };
 
 })();
