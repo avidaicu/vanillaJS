@@ -1,19 +1,27 @@
-// put event handlers for header links here
-$(document).ready(function(){
+var Header = (function() {
 
-    var $modal = $("[rel='js-modal']");
+    function init(){
+        $modal = $("[rel='js-modal']");
 
-    $("[rel='js-controls']").on("click","[rel*='js-']", function(evt){
-        evt.preventDefault();
-        // evt.stopPropagation();
-        // evt.stopImmediatePropagation();
+        $("[rel='js-controls']").on("click","[rel*='js-']", function(evt){
+            evt.preventDefault();
+            evt.stopPropagation();
+            evt.stopImmediatePropagation();
 
-        var url = $(evt.target).attr("href");
+            var url = $(evt.target).attr("href");
 
-        $.ajax(url,{ dataType: "text" })
-        .then(function(contents){
-            $modal.html(contents).show();
+            $.ajax(url,{ dataType: "text" })
+            .then(function(contents){
+                $modal.html(contents).show();
+            });
         });
-    });
+    }
 
-});
+    var $modal;
+
+    // declare a `public api`
+    return {
+        init: init
+    };
+
+})();
