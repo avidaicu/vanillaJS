@@ -46,8 +46,8 @@ var Carousel = (function() {
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
 
-			EVT.emit("person-selected", ID);
-			// Details.loadPerson(ID);
+			// EVT.emit("person-selected", ID);
+			Details.loadPerson(ID);
 		});
 	}
 
@@ -60,10 +60,10 @@ var Carousel = (function() {
 	var position;
 	var maxPosition;
 
-	EVT.on("init", init);
+	// EVT.on("init", init);
 
-	// return {
-	// 	init: init
-	// };
+	return {
+		init: init
+	};
 
 })();

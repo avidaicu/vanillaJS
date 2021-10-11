@@ -1,28 +1,45 @@
 var Header = (function() {
 
     function init(){
-        $modal = $("[rel='js-modal']");
+        $modal = $("[rel=js-modal]");
+		$close = $modal.children("[rel='js-close']");
+		$content = $modal.children("[rel='js-content']");
+
+        $close.on("click",closeModal);
 
         $("[rel='js-controls']").on("click","[rel*='js-']", function(evt){
+
+            if ($modal.is(":visible")) {
+                return closeModal(evt);
+            }
+    
             evt.preventDefault();
             evt.stopPropagation();
             evt.stopImmediatePropagation();
-
+    
             var url = $(evt.target).attr("href");
-
+    
             $.ajax(url,{ dataType: "text" })
             .then(function(contents){
-                $modal.html(contents).show();
+                $content.html(contents);
+                $modal.show();
             });
         });
     }
 
-    var $modal;
+    function closeModal(evt) {
+		evt.preventDefault();
+		evt.stopPropagation();
+		evt.stopImmediatePropagation();
 
-    EVT.on("init", init);
+		$content.empty();
+		$modal.hide();
+	}
 
-    // return {
-    //     init: init
-    // };
+    var $modal, $close, $content;
+
+    return {
+        init: init
+    };
 
 })();
