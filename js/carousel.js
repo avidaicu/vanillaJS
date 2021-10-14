@@ -9,7 +9,6 @@ var Carousel = (function() {
 		$items = $content.children("[rel=js-links]");
 
 		$items.on("click", "[rel*='js-link-']", function(evt){
-			console.log('evt:', evt);
 			var ID = $(evt.target).attr("rel").replace(/^.*(\d+)$/, "$1");
 
 			Details.loadPerson(ID);
